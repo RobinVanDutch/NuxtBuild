@@ -1,13 +1,18 @@
 <template>
-$END$
+
+  <button @click="plus">Plus</button>
+  <p>{{ count }}</p>
+  <button @click="minus">Minus</button>
 </template>
 
-<script>
-export default {
-name: "Counter"
-}
+<script setup>
+  const count = ref(0);
+
+  function plus() {
+    count.value++;
+  }
+
+  function minus() {
+    count.value--;
+  }
 </script>
-
-<style scoped>
-
-</style>
