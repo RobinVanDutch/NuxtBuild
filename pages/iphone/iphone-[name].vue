@@ -1,7 +1,9 @@
 <template>
-    <p>
-        Iphone {{ name }}
-    </p>
+    <div>
+        <h2 class="">
+            Iphone {{ name }}
+        </h2>
+    </div>
 </template>
 
 <script setup>
