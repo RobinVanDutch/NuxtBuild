@@ -1,5 +1,8 @@
 <template>
     <div class="w-80 flex justify-center content-center items-center flex-col m-auto mb-80 mt-80">
+        <div class="bg-red-600 mb-6 border-solid block rounded text-center w-72" v-if="_error">
+            <p class=" text-red-200 text-sm font-bold p-3 ">{{ _error }}</p>
+        </div>
         <form @submit.prevent="onSubmit">
             <div class="mb-6">
                 <input v-model="form.email" type="text" class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700
@@ -29,6 +32,7 @@
 <script setup>
 const url = "https://reqres.in/api/login";
 const isLoading = ref(false);
+const _error = ref(null);
 
 const form = reactive({
     email: "eve.holt@reqres.in",
@@ -45,6 +49,13 @@ async function onSubmit() {
     });
 
     isLoading.value = false;
-    console.log(data.value, error);
+    if (error.value) {
+        _error.value = error.value.data.error;
+        return;
+    }
+
+    const auth = useAuth();
+    auth.value.isAuthenticated = true;
+    navigateTo('/');
 }
 </script>

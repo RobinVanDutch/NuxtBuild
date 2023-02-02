@@ -7,10 +7,12 @@
         <p>
             Cart ({{cart.length}})
         </p>
+        <p>{{ auth.isAuthenticated }}</p>
     </nav>
 </template>
 
 <script setup>
     const cart = useCart();
+    const auth = useAuth();
     console.log(cart.value.length);
 </script>
